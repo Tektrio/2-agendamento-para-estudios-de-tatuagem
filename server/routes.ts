@@ -9,11 +9,15 @@ import {
   insertAppointmentSchema, 
   insertWaitlistSchema 
 } from "@shared/schema";
-import { getArtistRecommendation, generateWaitlistMessage, getCancellationSuggestions } from "./openai-service";
+import { getArtistRecommendation, generateWaitlistMessage } from "./openai-service";
+import { setupCancellationRoutes } from "./routes/cancellation";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuth(app);
+  
+  // Setup cancellation routes with AI-powered suggestions
+  setupCancellationRoutes(app);
 
   // API Routes
   // Artists
@@ -251,9 +255,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid waitlist data", errors: result.error.format() });
       }
       
+      // Generate a personalized message using AI
+      const userPreferences = {
+        tattooStyle: data.tattooStyle || "",
+        tattooSize: data.tattooSize || "",
+        preferredDates: data.preferredDates || "",
+        budgetRange: data.budgetRange || "",
+        description: data.description
+      };
+      
+      // Use the waitlistEntry data and the OpenAI service to generate a personalized message
+      const personalizedMessage = await generateWaitlistMessage(userPreferences);
+      
+      // Create the waitlist entry
       const waitlistEntry = await storage.createWaitlistEntry(result.data);
-      res.status(201).json(waitlistEntry);
+      
+      // Return both the entry and the personalized message
+      res.status(201).json({
+        ...waitlistEntry,
+        personalizedMessage
+      });
     } catch (error) {
+      console.error("Error creating waitlist entry:", error);
       res.status(500).json({ message: "Failed to create waitlist entry" });
     }
   });

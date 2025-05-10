@@ -55,23 +55,40 @@ export async function joinWaitlist(request: {
   return res.json();
 }
 
-// Simulated AI function for cancellation management
-export function handleCancellation(
+// AI-powered function for cancellation management
+export async function handleCancellation(
   appointmentId: number,
   reason: string
 ): Promise<{
   message: string;
-  suggestedDates?: Date[];
+  suggestedDates?: string[];
   suggestedArtists?: Artist[];
 }> {
-  // This would connect to a real AI service in production
-  return Promise.resolve({
-    message: "Your appointment has been canceled. We've analyzed your preferences and have some alternative suggestions for you.",
-    suggestedDates: [
-      new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-      new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    ],
-    suggestedArtists: [],
-  });
+  try {
+    const res = await apiRequest(
+      "POST", 
+      `/api/appointments/${appointmentId}/cancel`, 
+      { reason }
+    );
+    
+    const data = await res.json();
+    
+    // Convert suggested dates from strings to Date objects if needed
+    const suggestedDates = data.suggestions.suggestedDates || [];
+    
+    // Get suggested artists
+    const suggestedArtistIds = data.suggestions.suggestedArtistIds || [];
+    
+    // In a real application, we would fetch the full artist details here
+    // For simplicity, we're just returning the basic info from the API
+    
+    return {
+      message: data.suggestions.message,
+      suggestedDates,
+      suggestedArtists: data.suggestions.suggestedArtists || []
+    };
+  } catch (error) {
+    console.error("Error handling cancellation:", error);
+    throw new Error("Failed to process cancellation. Please try again.");
+  }
 }
