@@ -1,0 +1,37 @@
+Crie um PRD (Documento de Requisitos do Produto) detalhado para o desenvolvimento de um aplicativo avançado de agendamento para estúdios de tatuagem utilizando Node.js no backend e React.js no frontend, com integração completa ao Google Calendar. O aplicativo atenderá 5 artistas, cada um com sua agenda exclusiva, permitindo múltiplos links de horários agendáveis (Bookable Appointment Schedules) individuais por artista, com agentes específicos de inteligência artificial para cuidar de cada parte do sistema.
+
+Requisitos Funcionais:
+
+1. **Gerenciamento Individual das Agendas:**
+
+   * Cada artista terá sua própria agenda sincronizada ao Google Calendar.
+   * Múltiplos Bookable Appointment Schedules configuráveis por artista, permitindo customização e flexibilidade na organização de horários disponíveis.
+   * Agente IA dedicado para monitorar e otimizar constantemente as agendas individuais, prevendo necessidades futuras.
+
+2. **Agente de Inteligência Artificial para Recomendações:**
+
+   * IA especializada em analisar solicitações dos clientes e recomendar automaticamente o link mais adequado de Bookable Appointment Schedule com base em critérios pré-definidos (tipo de tatuagem, estilo, disponibilidade imediata, orçamento, preferência do artista).
+   * Capacidade da IA de apresentar aos clientes opções que dão impressão de ampla disponibilidade, aumentando as conversões.
+
+3. **Agente IA para Gestão Inteligente de Cancelamentos:**
+
+   * IA dedicada exclusivamente ao gerenciamento de cancelamentos, notificando automaticamente os clientes sobre cancelamentos de última hora e oferecendo agendamento rápido e imediato com base em preferências anteriores ou disponibilidades declaradas.
+
+4. **Agente IA para Lista de Espera Inteligente (Waitlist):**
+
+   * Sistema de espera detalhado gerido por IA, coletando e analisando informações essenciais, tais como:
+
+     * Disponibilidade de dias e horários preferenciais do cliente.
+     * Orçamento disponível para a tatuagem.
+     * Artista preferido, tamanho e localização da tatuagem desejada.
+
+5. **Agente IA para Comunicação Automatizada:**
+
+   * Sistema inteligente de comunicação automatizada via SMS ou notificações push gerenciado por IA, informando rapidamente sobre novas disponibilidades e eventos relevantes.
+
+6. **Agente IA para Interface Simples e Intuitiva:**
+
+   * IA para aprimorar a interface e experiência do usuário, garantindo que o painel seja claro, intuitivo e fácil de usar tanto para clientes quanto para artistas.
+   * Relatórios e analytics avançados gerados automaticamente pela IA para monitoramento e tomada de decisão pelos artistas e administradores.
+
+Este PRD deve fornecer todas as diretrizes necessárias para uma implementação ágil e eficiente do aplicativo, garantindo que cada módulo seja gerenciado eficientemente por inteligência artificial especializada, atendendo perfeitamente às necessidades do estúdio e dos clientes.
