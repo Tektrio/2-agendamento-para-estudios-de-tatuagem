@@ -212,6 +212,50 @@ export default function AuthPage() {
                         </button>
                       </p>
                     </div>
+
+                    {/* Quick Login Section for Development */}
+                    <div className="mt-8 pt-6 border-t border-gray-700">
+                      <h3 className="text-sm font-medium text-gray-400 mb-3 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Quick Login (Development Only)
+                      </h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button 
+                          type="button" 
+                          variant="outline"
+                          className="text-xs h-9 border-gray-600 hover:bg-gray-700"
+                          onClick={() => loginMutation.mutate({ username: "customer", password: "password123" })}
+                        >
+                          Login as Customer
+                        </Button>
+                        <Button 
+                          type="button" 
+                          variant="outline"
+                          className="text-xs h-9 border-gray-600 hover:bg-gray-700"
+                          onClick={() => loginMutation.mutate({ username: "artist1", password: "password123" })}
+                        >
+                          Login as Artist 1
+                        </Button>
+                        <Button 
+                          type="button" 
+                          variant="outline"
+                          className="text-xs h-9 border-gray-600 hover:bg-gray-700"
+                          onClick={() => loginMutation.mutate({ username: "artist2", password: "password123" })}
+                        >
+                          Login as Artist 2
+                        </Button>
+                        <Button 
+                          type="button" 
+                          variant="outline"
+                          className="text-xs h-9 border-gray-600 hover:bg-gray-700"
+                          onClick={() => loginMutation.mutate({ username: "admin", password: "admin123" })}
+                        >
+                          Login as Admin
+                        </Button>
+                      </div>
+                    </div>
                   </div>
                 </TabsContent>
 
