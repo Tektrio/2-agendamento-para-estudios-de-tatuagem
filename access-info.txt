@@ -1,0 +1,22 @@
+# Informações de Acesso para o Aplicativo de Estúdio de Tatuagem
+
+## Acesso via Web
+URL pública: https://dcfbd096d5fe
+
+## Acesso via API
+Base URL: https://dcfbd096d5fe/api
+
+Endpoints disponíveis:
+- GET /api/artists - Lista todos os artistas
+- GET /api/schedules - Lista todos os horários disponíveis
+- GET /api/appointments - Lista todos os agendamentos
+- GET /api/waitlist - Lista todos os registros da lista de espera
+
+## Acesso ao Dashboard de Analytics
+URL: https://dcfbd096d5fe/analytics
+
+## Acesso ao Banco de Dados
+DATABASE_URL: PostgreSQL em ep-billowing-frost-a428nnhq.us-east-1.aws.neon.tech
+
+## Data de Geração
+Mon 12 May 2025 03:02:12 PM UTC
