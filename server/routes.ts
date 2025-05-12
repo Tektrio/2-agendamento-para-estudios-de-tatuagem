@@ -13,6 +13,7 @@ import { getArtistRecommendation, generateWaitlistMessage } from "./openai-servi
 import { setupCancellationRoutes } from "./routes/cancellation";
 import { setupWaitlistRoutes } from "./routes/waitlist";
 import { setupCalendarRoutes } from "./routes/calendar";
+import { setupAnalyticsRoutes } from "./routes/analytics";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
@@ -26,6 +27,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Setup calendar routes with Google Calendar integration
   setupCalendarRoutes(app);
+  
+  // Setup analytics routes
+  setupAnalyticsRoutes(app);
 
   // API Routes
   // Artists

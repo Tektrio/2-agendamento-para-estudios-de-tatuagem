@@ -12,6 +12,7 @@ import ArtistPage from "@/pages/artist-page";
 import BookingPage from "@/pages/booking-page";
 import DashboardPage from "@/pages/dashboard-page";
 import WaitlistPage from "@/pages/waitlist-page";
+import AnalyticsPage from "@/pages/analytics-page";
 import { ProtectedRoute } from "./lib/protected-route";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <ProtectedRoute path="/booking" component={BookingPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <ProtectedRoute path="/waitlist" component={WaitlistPage} />
+      <ProtectedRoute path="/analytics" component={AnalyticsPage} />
       <Route component={NotFound} />
     </Switch>
   );
