@@ -11,6 +11,7 @@ import {
 } from "@shared/schema";
 import { getArtistRecommendation, generateWaitlistMessage } from "./openai-service";
 import { setupCancellationRoutes } from "./routes/cancellation";
+import { setupWaitlistRoutes } from "./routes/waitlist";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
@@ -18,6 +19,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Setup cancellation routes with AI-powered suggestions
   setupCancellationRoutes(app);
+  
+  // Setup waitlist routes
+  setupWaitlistRoutes(app);
 
   // API Routes
   // Artists
@@ -241,71 +245,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Waitlist
-  app.post("/api/waitlist", async (req, res) => {
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-      
-      const data = { ...req.body, userId: req.user!.id };
-      const result = insertWaitlistSchema.safeParse(data);
-      
-      if (!result.success) {
-        return res.status(400).json({ message: "Invalid waitlist data", errors: result.error.format() });
-      }
-      
-      // Generate a personalized message using AI
-      const userPreferences = {
-        tattooStyle: data.tattooStyle || "",
-        tattooSize: data.tattooSize || "",
-        preferredDates: data.preferredDates || "",
-        budgetRange: data.budgetRange || "",
-        description: data.description
-      };
-      
-      // Use the waitlistEntry data and the OpenAI service to generate a personalized message
-      const personalizedMessage = await generateWaitlistMessage(userPreferences);
-      
-      // Create the waitlist entry
-      const waitlistEntry = await storage.createWaitlistEntry(result.data);
-      
-      // Return both the entry and the personalized message
-      res.status(201).json({
-        ...waitlistEntry,
-        personalizedMessage
-      });
-    } catch (error) {
-      console.error("Error creating waitlist entry:", error);
-      res.status(500).json({ message: "Failed to create waitlist entry" });
-    }
-  });
-
-  app.get("/api/waitlist", async (req, res) => {
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-      
-      let waitlistEntries;
-      
-      if (req.user!.isArtist) {
-        const artist = await storage.getArtistByUserId(req.user!.id);
-        
-        if (!artist) {
-          return res.status(404).json({ message: "Artist not found" });
-        }
-        
-        waitlistEntries = await storage.getWaitlistEntriesByArtistId(artist.id);
-      } else {
-        waitlistEntries = await storage.getWaitlistEntriesByUserId(req.user!.id);
-      }
-      
-      res.json(waitlistEntries);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to fetch waitlist entries" });
-    }
-  });
+  // Waitlist routes are now handled in server/routes/waitlist.ts
 
   // Tattoo Styles
   app.get("/api/tattoo-styles", async (_req, res) => {

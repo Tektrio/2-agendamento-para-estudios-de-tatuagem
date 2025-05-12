@@ -11,6 +11,7 @@ import AuthPage from "@/pages/auth-page";
 import ArtistPage from "@/pages/artist-page";
 import BookingPage from "@/pages/booking-page";
 import DashboardPage from "@/pages/dashboard-page";
+import WaitlistPage from "@/pages/waitlist-page";
 import { ProtectedRoute } from "./lib/protected-route";
 
 function Router() {
