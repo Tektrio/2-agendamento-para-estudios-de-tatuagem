@@ -22,6 +22,7 @@ function Router() {
       <Route path="/artists/:id" component={ArtistPage} />
       <ProtectedRoute path="/booking" component={BookingPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
+      <ProtectedRoute path="/waitlist" component={WaitlistPage} />
       <Route component={NotFound} />
     </Switch>
   );

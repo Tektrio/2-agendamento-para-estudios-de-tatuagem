@@ -19,6 +19,7 @@ export function Header() {
   const navigation = [
     { name: "Book Now", href: "/booking" },
     { name: "Artists", href: "/artists" },
+    { name: "Waitlist", href: "/waitlist" },
     { name: "Gallery", href: "/gallery" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
