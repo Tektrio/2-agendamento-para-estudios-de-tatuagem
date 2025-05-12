@@ -4,7 +4,6 @@ import { useLocation, Redirect } from "wouter";
 import { AnalyticsDashboard } from "@/components/analytics/analytics-dashboard";
 import { Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { storage } from "@/lib/queryClient";
 
 export default function AnalyticsPage() {
   const { user, isLoading } = useAuth();

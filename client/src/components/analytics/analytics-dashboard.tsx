@@ -451,7 +451,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                       <div>
                         <h3 className="text-lg font-medium mb-2">Top Performing Artists</h3>
                         <div className="space-y-2">
-                          {studioData.artistPerformance?.slice(0, 3).map((artist, i) => (
+                          {studioData.artistPerformance?.slice(0, 3).map((artist: { artistName: string; revenue: number }, i: number) => (
                             <div key={i} className="flex items-center justify-between">
                               <span className="font-medium">{artist.artistName}</span>
                               <span className="text-sm text-muted-foreground">${artist.revenue.toFixed(2)}</span>
@@ -463,7 +463,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                       <div>
                         <h3 className="text-lg font-medium mb-2">Popular Styles</h3>
                         <div className="space-y-2">
-                          {studioData.popularStyles?.slice(0, 3).map((style, i) => (
+                          {studioData.popularStyles?.slice(0, 3).map((style: { style: string; count: number }, i: number) => (
                             <div key={i} className="flex items-center justify-between">
                               <span className="font-medium">{style.style}</span>
                               <span className="text-sm text-muted-foreground">{style.count} appointments</span>
@@ -487,7 +487,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {insights?.recommendations?.slice(0, 3).map((recommendation, i) => (
+                    {insights?.recommendations?.slice(0, 3).map((recommendation: string, i: number) => (
                       <li key={i} className="flex items-start gap-2">
                         <div className="mt-0.5 bg-primary/10 p-1 rounded-full">
                           <TrendingUp className="h-3 w-3 text-primary" />
@@ -532,7 +532,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-2">Top Schedules</h3>
                       <div className="space-y-2">
-                        {appointmentData.topSchedules?.map((schedule, i) => (
+                        {appointmentData.topSchedules?.map((schedule: { name: string; count: number; revenue: number }, i: number) => (
                           <div key={i} className="flex items-center justify-between">
                             <span className="font-medium">{schedule.name}</span>
                             <div className="flex items-center gap-4">
@@ -547,7 +547,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-2">Appointments by Day</h3>
                       <div className="space-y-2">
-                        {appointmentData.appointmentsByDay?.filter(day => day.count > 0).map((day, i) => (
+                        {appointmentData.appointmentsByDay?.filter((day: { count: number }) => day.count > 0).map((day: { day: string; count: number }, i: number) => (
                           <div key={i} className="flex items-center justify-between">
                             <span className="font-medium">{day.day}</span>
                             <span className="text-sm text-muted-foreground">{day.count} appointments</span>
@@ -592,7 +592,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-2">Top Requested Styles</h3>
                       <div className="space-y-2">
-                        {waitlistData.topRequestedStyles?.map((style, i) => (
+                        {waitlistData.topRequestedStyles?.map((style: { style: string; count: number }, i: number) => (
                           <div key={i} className="flex items-center justify-between">
                             <span className="font-medium">{style.style}</span>
                             <span className="text-sm text-muted-foreground">{style.count} requests</span>
@@ -604,7 +604,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-2">Top Requested Artists</h3>
                       <div className="space-y-2">
-                        {waitlistData.topRequestedArtists?.map((artist, i) => (
+                        {waitlistData.topRequestedArtists?.map((artist: { artistId: number; artistName: string; count: number }, i: number) => (
                           <div key={i} className="flex items-center justify-between">
                             <span className="font-medium">{artist.artistName}</span>
                             <span className="text-sm text-muted-foreground">{artist.count} requests</span>
@@ -650,7 +650,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                       <div>
                         <h3 className="text-lg font-medium mb-2">Popular Schedules</h3>
                         <div className="space-y-2">
-                          {artistData.popularSchedules?.map((schedule, i) => (
+                          {artistData.popularSchedules?.map((schedule: { name: string; count: number }, i: number) => (
                             <div key={i} className="flex items-center justify-between">
                               <span className="font-medium">{schedule.name}</span>
                               <span className="text-sm text-muted-foreground">{schedule.count} bookings</span>
@@ -662,7 +662,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                       <div>
                         <h3 className="text-lg font-medium mb-2">Busy Hours</h3>
                         <div className="space-y-2">
-                          {artistData.busyHours?.slice(0, 5).map((slot, i) => (
+                          {artistData.busyHours?.slice(0, 5).map((slot: { hour: number; count: number }, i: number) => (
                             <div key={i} className="flex items-center justify-between">
                               <span className="font-medium">{slot.hour}:00</span>
                               <span className="text-sm text-muted-foreground">{slot.count} appointments</span>
@@ -693,7 +693,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-3">Key Insights</h3>
                       <ul className="space-y-3">
-                        {insights.insights?.map((insight, i) => (
+                        {insights.insights?.map((insight: string, i: number) => (
                           <li key={i} className="flex items-start gap-2">
                             <div className="mt-0.5 bg-primary/10 p-1 rounded-full">
                               <TrendingUp className="h-3 w-3 text-primary" />
@@ -707,7 +707,7 @@ export function AnalyticsDashboard({ artistId }: { artistId?: number }) {
                     <div>
                       <h3 className="text-lg font-medium mb-3">Recommendations</h3>
                       <ul className="space-y-3">
-                        {insights.recommendations?.map((recommendation, i) => (
+                        {insights.recommendations?.map((recommendation: string, i: number) => (
                           <li key={i} className="flex items-start gap-2">
                             <div className="mt-0.5 bg-primary/10 p-1 rounded-full">
                               <TrendingUp className="h-3 w-3 text-primary" />

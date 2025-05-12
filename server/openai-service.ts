@@ -260,7 +260,8 @@ export async function getCancellationSuggestions(
       response_format: { type: "json_object" }
     });
 
-    return JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0].message.content || '{"message":"We\'re sorry about your cancellation. Here are some alternative options.","suggestedArtistIds":[],"suggestedDates":[]}';
+    return JSON.parse(content);
   } catch (error) {
     console.error("Error getting cancellation suggestions:", error);
     
